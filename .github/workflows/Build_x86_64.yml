@@ -7,19 +7,13 @@
 
 name: Build_x86_64
 
-on: 
-  release:
-    types: [published]
-
-  #push:
-  #  branches: 
-  #    - master
-
-  #schedule:
-  #  - cron: 0 8 * * 5
-  
-  #watch:
-  #  types: [started]
+on:
+  repository_dispatch:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 4 * * *
+  # watch:
+  #   types: started      
 
 jobs:
   build:
