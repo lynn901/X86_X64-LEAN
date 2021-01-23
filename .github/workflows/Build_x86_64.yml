@@ -1,8 +1,8 @@
 #=================================================
 # Description: Build OpenWrt using GitHub Actions
 # Lisence: MIT
-# Author: eSirPlayground
-# Youtube Channel: https://goo.gl/fvkdwm 
+# Author: BIGDONGDONG
+# Youtube Channel: https://www.youtube.com/channel/UCpPswAyGzdRwWmiW5oTNnvA
 #=================================================
 
 name: Build_x86_64
@@ -14,7 +14,18 @@ on:
     - cron: 0 4 * * *
   # watch:
   #   types: started      
-
+env:
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master
+  CONFIG_FILE: x86_64.config
+  DIY_SH: customize.sh
+  IPV6MOD_IN_FIRMWARE: true
+  KMODS_IN_FIRMWARE: true
+  UPLOAD_WETRANSFER: true
+  UPLOAD_COWTRANSFER: true
+  UPLOAD_RELEASE: true
+  TZ: Asia/Shanghai
+ 
 jobs:
   build:
     runs-on: ubuntu-latest
