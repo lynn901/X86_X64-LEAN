@@ -1,10 +1,3 @@
-#=================================================
-# Description: Build OpenWrt using GitHub Actions
-# Lisence: MIT
-# Author: BIGDONGDONG
-# Youtube Channel: https://www.youtube.com/channel/UCpPswAyGzdRwWmiW5oTNnvA
-#=================================================
-
 name: Build_x86_64
 
 on:
@@ -13,7 +6,8 @@ on:
   schedule:
     - cron: 0 4 * * *
   # watch:
-  #   types: started  
+  #   types: started      
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -64,20 +58,20 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         ./scripts/feeds install -a
-    - name: Import external feeds
-      working-directory: ./openwrt
-      run: |
-        git clone https://github.com/Lienol/openwrt.git package/lienol
-        git clone "your_github_link" package/"your_folder_name"       
+    #- name: Import external feeds
+    #  working-directory: ./openwrt
+    #  run: |
+    #    git clone https://github.com/xiaorouji/openwrt-package.git package/lienol
+    #    git clone "your_github_link" package/"your_folder_name"      
 
     - name: Configuration Customization - Build_x86_64
-        env:
+      env:
         CONFIG_FILE: 'x86_64.config'
-        run: |
-         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-         chmod +x ./customize.sh && ./customize.sh
-         cd openwrt && make menuconfig
-   
+      run: |
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        chmod +x ./customize.sh && ./customize.sh
+        cd openwrt && make defconfig
+        
     - name: Download package
       working-directory: ./openwrt
       run: |
